@@ -1,0 +1,23 @@
+Bases para proyecto simulador
+
+Principal
+nombre: Lavoisier
+Compatibilidad CAPE/OPEN
+numpy como base
+
+Archivos
+YAML+HDF5
+YAML para compuestos, se compila a HDF5
+archivos de guardado en HDF5
+
+GUI
+wxPython como gui (compatibilidad linux/windows/mac, gui a largo plazo)
+
+Gráficos
+pyqtgraph para graficos en tiempo real, matplotlib para graficos estáticos
+
+Como empezar
+-exportar una base de datos a python + HDF5 (chemsep, DIPPR, buscar más)
+-crear la interfaz CAPE-OPEN de base de datos
+-Crear el material object a partir de los datos de la base de datos
+
