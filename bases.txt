@@ -11,7 +11,10 @@ YAML para compuestos, se compila a HDF5
 archivos de guardado en HDF5
 
 GUI
-wxPython como gui (compatibilidad linux/windows/mac, gui a largo plazo)
+opciones:
+wxPython
+flutter
+
 
 Gráficos
 pyqtgraph para graficos en tiempo real, matplotlib para graficos estáticos
