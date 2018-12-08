@@ -20,17 +20,17 @@ The following components are necessary for a minimum viable product:
 After those blocks are done, the second part of the simulation enviroment development starts, we need to build the following:
 
 * A flowsheet executive: capable of converting a flow diagram in a set of ecuations to solve
-* a GUI, for easy flowsheeting of the chemical process
+* a GUI, for easy flowsheeting of the chemical process.
 
 ## When?
 I can't answer that yet.
 
 ## Who?
-at the time, we are two (2) chemical engineering graduates, from the University of Concepción
+at the time, we are two (2) chemical engineering graduates, from the University of Concepción, Chile.
 
 ## Can i join?
 
-Of course!, we dont have nothing, but you can start by reading the cape-open implementation.
+Of course!, we dont have nothing, but you can start by reading the cape-open implementation.any help would be appreciated!
 
 
 
