@@ -16,11 +16,12 @@ wxPython
 flutter
 
 
-Gráficos
-pyqtgraph para graficos en tiempo real, matplotlib para graficos estáticos
+Grï¿½ficos
+pyqtgraph para graficos en tiempo real, matplotlib para graficos estï¿½ticos
 
 Como empezar
--exportar una base de datos a python + HDF5 (chemsep, DIPPR, buscar más)
+-exportar una base de datos a python + HDF5 (chemsep, DIPPR, buscar mï¿½s)
 -crear la interfaz CAPE-OPEN de base de datos
 -Crear el material object a partir de los datos de la base de datos
 
+ssss
