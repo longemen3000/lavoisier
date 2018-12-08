@@ -1,4 +1,4 @@
-# Lavoisier
+# Lavoisier Chemical Engineering Process Simulator
 
 ## What?
 
@@ -30,7 +30,7 @@ at the time, we are two (2) chemical engineering graduates, from the University 
 
 ## Can i join?
 
-Of course!, we dont have nothing, but you can start by reading the cape-open implementation.any help would be appreciated!
+Of course!, we dont have nothing, but you can start by reading the cape-open implementation.any help would be appreciated! 
 
 
 
