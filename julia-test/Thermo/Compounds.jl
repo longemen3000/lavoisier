@@ -4,7 +4,6 @@ module Compounds
 export Compound,getConstPropList,newCompound,
 GetCompoundList,getConstPropList,property
 
-
 StringPropertiesBaseDict = begin 
     Dict{String,Union{Missing,String}}(
     "ID"=>missing,
@@ -63,30 +62,55 @@ ArrayPropertiesBaseDict = begin
     "empty"=>NaN)
 )
 end
-
+###########################################
 struct Compound
     #stores an individual compound, and its constant properties
     StringProperties::Dict{String,Union{Missing,String}}
     ValueProperties::Dict{String,Float64}
     ArrayProperties::Dict{String,Dict{String,Float64}}
+    function Compound(str=StringPropertiesBaseDict,val=ValuePropertiesBaseDict,arr=ArrayPropertiesBaseDict;ID="")
+    x1 = merge(StringPropertiesBaseDict,str)
+    x2 = merge(ValuePropertiesBaseDict,val)
+    x3= merge(ArrayPropertiesBaseDict,arr)
+    if ID!=""
+        x1["ID"]=ID
+    end
+    return new(x1,x2,x3)
+end
 end
 
 struct CompoundList
     #stores a set of compounds, and its constant properties
     Compounds::Array{Compound,1}
     CompoundsID::Array{String,1}
+    function CompoundList(Compoundsz::Array{Compound})
+        IDs = map(x->x.StringProperties["ID"],Compoundsz)
+        if allunique(IDs) || throw("one or more IDs of the compound list are diferent.")
+            return new(Compoundsz,IDs)
+        else     
+       end
+    end
     #strArr:: Array{String,1}
 end 
 
-#Base extensions to structs
+
+########################
+#Indexing to CompoundList
 Base.length(S::CompoundList) = length(S.CompoundsID)
 Base.iterate(S::CompoundList, state=1) = state > length(S) ? nothing : (S.compounds[state], state+1)
 
 
-function Base.getindex(S::CompoundList, i)
-1 <= i <= length(S) || throw(BoundsError(S, i))
-return S.compounds[i]
+function Base.getindex(S::CompoundList, i::Number)
+    1 <= i <= length(S) || throw(BoundsError(S, i))
+    return S.compounds[i]
 end
+
+#function Base.getindex(S::CompoundList, I) 
+ #   return [S[i] for i in I]
+#end
+
+
+
 function Base.getindex(list::CompoundList, prop::String)
     if haskey(ValuePropertiesBaseDict, prop)
         xxx = map(x->x.ValueProperties[prop],list.Compounds)
@@ -97,17 +121,21 @@ function Base.getindex(list::CompoundList, prop::String)
     else throw("Property doesnt exist.")
     end
     return xxx
-    end
-
-function newCompound(StringProperties =StringPropertiesBaseDict, x2=ValuePropertiesBaseDict,x3=ArrayPropertiesBaseDict; ID::String = "") # not standard, but useful
-    if ID==""
-        return Compound(merge(StringPropertiesBaseDict,StringProperties),merge(ValuePropertiesBaseDict,x2),merge(ArrayPropertiesBaseDict,x3))  
-    else
-        xx = merge(StringPropertiesBaseDict,StringProperties)
-        xx["ID"]=ID
-        return Compound(xx,merge(ValuePropertiesBaseDict,x2),merge(ArrayPropertiesBaseDict,x3))  
-    end
 end
+
+Base.firstindex(S::CompoundList)=1
+Base.lastindex(S::CompoundList)= length(S)
+
+
+Base.iterate(S::CompoundList, state=1) = state > length(S) ? nothing : (S.compounds[state], state+1)
+
+
+
+
+
+
+
+
 
 
 
@@ -123,6 +151,9 @@ function getCompound(list::CompoundList,ID::String="")
     end
 #SetCompoundProperty()
 end
+
+#function garr(Compoundsz::Array{Compound}) #transform compound list to Array
+    
 
 function newCompoundList(Compoundsz::Array{Compound})
     IDs = map(x->x.StringProperties["ID"],Compoundsz)
@@ -170,7 +201,7 @@ getConstPropList() = vcat(collect(keys(StringPropertiesBaseDict)),collect(keys(V
 ## IMPLEMENT THE FOLLOWING ON ALL OBJECTS (examples from julialang docs)
 #Base.iterate(S::Squares, state=1) = state > S.count ? nothing : (state*state, state+1)
 #Base.eltype(::Type{Squares}) = Int # Note that this is defined for the type
-Base.length(S::CompoundList) = length(S.CompoundsID)
+
 
 
 

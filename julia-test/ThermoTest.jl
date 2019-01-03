@@ -18,7 +18,7 @@ try
     R = UniversalConstants.getUniversalConstant("molarGasConstant")
     testResults[testCounter]=true
     println(string("Test"," N°",testCounter,", ",testName,": Passed"))
-catch error;
+catch error
     testResults[testCounter]=false
     println("******************************")
     println(string("Test"," N°",testCounter,", ",testName,": Failed"))
@@ -64,20 +64,24 @@ try
     "ID"=>"compound1",
     "iupacName"=>"sdasd",
     "casRegistryNumber"=>"sdasd112312")
+
+
     x2 = Dict{String,Float64}(
         "molecularWeight"=>18.0,
         "criticalTemperature"=>647,
         "criticalPressure"=>220000)
-    compound1 = newCompound(x1)
-    compound2 = newCompound(x1,x2,ID="compound2")
-    compound3 = newCompound(x1,ID="compound3")
+
+
+    compound1 = Compound(x1)
+    compound2 = Compound(x1,x2,ID="compound2")
+    compound3 = Compound(x1,ID="compound3")
     #println(compound1.ID)
     #println(compound2.ID)
     #compoundlist1 = Compounds.newCompoundList([compound1,compound2],["11","22"]) #not valid anymore
     Compoundsz = [compound1,compound2,compound3]
     IDs = map(x->x.StringProperties["ID"],Compoundsz)
     println(IDs)
-    compoundlist2 = Compounds.newCompoundList(Compoundsz)
+    compoundlist2 = Compounds.CompoundList(Compoundsz)
     #println(Compounds.GetCompoundList(compoundlist1))
    # println(Compounds.GetNumCompounds(compoundlist2))
     #println(compound1.StringProperties["ID"])
@@ -103,10 +107,13 @@ end
 
 
 
+mutable struct po 
+    x::Real
+    y::Real
+end
 
-
-
-
+p1 = po(1,1)
+p1.x = 40
 
 
 passedResults = length(filter(x ->  x== true, testResults)) #usage of filter function
